@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, date, time
 from sklearn.linear_model import SGDClassifier
+#from sklearn.linear_model import LinearRegression
 from sklearn.feature_extraction import FeatureHasher
 from sklearn.preprocessing import LabelEncoder
 
@@ -30,18 +31,15 @@ for chunk in train:
     clf.partial_fit(Xcat, y_train, classes=all_classes)
     
 # Create a submission file
-#print "on test"
 usecols = cols + ["id"]
-#print "Importing columns (from test) : ",usecols
-X_test = pd.read_csv("subtest.csv", usecols=usecols, chunksize=100000)
-#X_test_hour = pd.read_csv("subtest.csv", usecols=['hour'], chunksize=100000)
-X_test = X_test.get_chunk(pd.DataFrame([dayhour(x) for x in X_test.hour], columns=["wd", "hr"]))
+X_test = pd.read_csv("subtest.csv", usecols=usecols)
+X_test = X_test.join(pd.DataFrame([dayhour(x) for x in X_test.hour], columns=["wd", "hr"]))
 X_test.drop(["hour"], axis=1, inplace = True)
 
 X_enc_test = fh.transform(np.asarray(X_test.astype(str)))
 
 y_pred = clf.predict_proba(X_enc_test)[:, 1]
-with open("submission.csv", "w") as f:
+with open("submission_sgd.csv", "w") as f:
     f.write("id,click\n")
     for idx, xid in enumerate(X_test.id):
         f.write(str(xid) + "," + "{0:.10f}".format(y_pred[idx]) + "\n")
