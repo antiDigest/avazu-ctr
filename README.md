@@ -38,7 +38,7 @@ for prediciton have their own model
 
 ##Spectroscopic Determination of Leaf Biochemistry Using Band-Depth Analysis of Absorption Features and Stepwise Multiple Linear Regression
 
-Get this paper [here]http://www.sciencedirect.com/science/article/pii/S0034425798000844
+Get this paper here[http://www.sciencedirect.com/science/article/pii/S0034425798000844]
 
 I'll try to get this one in college.
 
