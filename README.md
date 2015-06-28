@@ -12,11 +12,11 @@ Click Through Rate !
 	It is a Linear Model trained with an L1 prior as regularizer. (LassoLARS)
 
 
-##Microsoft Paper
+###Microsoft Paper
 
 **No comparison kind of thing found among different classifiers, so, left it out
 
-##Predicting Ads’ Click-Through Rate with Decision Rules
+###Predicting Ads’ Click-Through Rate with Decision Rules
 
 ```bash
 	http://www.cs.put.poznan.pl/dweiss/research/adrules/papers/troa.pdf
@@ -32,17 +32,17 @@ for prediciton have their own model
 
 **even data types we are using does not match with them
 
-##Predicting Click-Through Rate Using Keyword Clusters
+###Predicting Click-Through Rate Using Keyword Clusters
 
 **I don't think we want these types of papers, there are plenty, but none satisfy our requirements of defining a domain for Linear Regression.
 
-##Spectroscopic Determination of Leaf Biochemistry Using Band-Depth Analysis of Absorption Features and Stepwise Multiple Linear Regression
+###Spectroscopic Determination of Leaf Biochemistry Using Band-Depth Analysis of Absorption Features and Stepwise Multiple Linear Regression
 
 Get this paper [here]http://www.sciencedirect.com/science/article/pii/S0034425798000844
 
 I'll try to get this one in college.
 
-##Ebook : Applied Linear regression
+###Ebook : Applied Linear regression
 
 [here]https://books.google.co.in/books?hl=en&lr=&id=xd0tNdFOOjcC&oi=fnd&pg=PR7&dq=areas+of+use+of+Linear+Regression&ots=dT3sDtKCMJ&sig=jlc1PqqX7LODumaRjuK5-D2GRas#v=onepage&q&f=false
 
@@ -52,3 +52,4 @@ This book cites some areas where linear regression is widely applied
 
 [here]http://articles.adsabs.harvard.edu/cgi-bin/nph-iarticle_query?bibcode=1975ApJ...200..747S&db_key=AST&page_ind=0&data_type=GIF&type=SCREEN_VIEW&classic=YES
 
+this one uses Linear Regression in some kind of geothermal prediction. And it can go into related works.
