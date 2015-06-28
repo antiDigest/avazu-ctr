@@ -1,0 +1,8 @@
+0.456388828053	SGDClassifier
+0.418150952219	LinearRegression
+5.67369877536	RandomForest
+5.93239366683	LogisticRegression
+0.418054733389	Ridge
+0.463121179767	Lasso
+5.90787059986	RidgeClassifier
+0.463121179767	ElasticNet

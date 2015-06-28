@@ -4,7 +4,7 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime, date, time
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import Ridge
 from sklearn.feature_extraction import FeatureHasher
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import log_loss
@@ -28,7 +28,7 @@ def dayhour(timestr):
 fh = FeatureHasher(n_features = 2**20, input_type="string")
 
 # Train classifier
-clf = LogisticRegression()
+clf = Ridge()
 train = pd.read_csv("train/subtrain.csv", chunksize = 100000, iterator = True)
 all_classes = np.array([0, 1])
 for chunk in train:
@@ -53,7 +53,7 @@ y_pred = clf.predict(X_enc_test)
 with open('logloss.txt','a') as f:
     f.write('\n'+str(log_loss(y_act, y_pred)))
 
-with open("submission/submission_logr.csv", "w") as f:
+with open("submission/submission_ridge.csv", "w") as f:
     f.write("id,click\n")
     for idx, xid in enumerate(X_test.id):
         f.write(str(xid) + "," + "{0:.10f}".format(y_pred[idx]) + "\n")
