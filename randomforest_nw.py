@@ -4,7 +4,7 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime, date, time
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction import FeatureHasher
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import log_loss
@@ -28,7 +28,7 @@ def dayhour(timestr):
 fh = FeatureHasher(n_features = 2**20, input_type="string")
 
 # Train classifier
-clf = LogisticRegression()
+clf = RandomForestClassifier()
 train = pd.read_csv("testtrain.csv", chunksize = 500000, iterator = True)
 all_classes = np.array([0, 1])
 for chunk in train:
@@ -38,7 +38,7 @@ for chunk in train:
     chunk.drop(["hour"], axis=1, inplace = True)
     Xcat = fh.transform(np.asarray(chunk.astype(str)))
     clf.fit(Xcat, y_train)
-    
+
 # Create a submission file
 usecols = cols + ["id"]
 X_test = pd.read_csv("testtest.csv", usecols=usecols)
@@ -50,10 +50,10 @@ X_enc_test = fh.transform(np.asarray(X_test.astype(str)))
 y_act = pd.read_csv("testtest.csv", usecols=['click'])
 y_pred = clf.predict_proba(X_enc_test)[:, 1]
 
-with open('logloss_logistic.txt','a') as f:
+with open('logloss_rf.txt','a') as f:
     f.write('\n'+str(log_loss(y_act, y_pred)))
 
-with open("submission_logistic.csv", "w") as f:
+with open("submission_rf.csv", "w") as f:
     f.write("id,click\n")
     for idx, xid in enumerate(X_test.id):
         f.write(str(xid) + "," + "{0:.10f}".format(y_pred[idx]) + "\n")
