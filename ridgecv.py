@@ -10,7 +10,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import log_loss
 import scipy as sp
 
-cols = ["C1","banner_pos","site_category", "device_type","device_conn_type","C14","C15","C16","C17","C18","C19","C20","C21", "hour"]
+cols = ["C1","banner_pos","site_category","app_category", "device_type","device_conn_type","C14","C15","C16","C17","C18","C19","C20","C21", "hour"]
 
 def llfun(act, pred):
     epsilon = 1e-15

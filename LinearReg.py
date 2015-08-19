@@ -9,6 +9,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.feature_extraction import FeatureHasher
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import log_loss
+from sklearn import preprocessing
 
 cols = ["C1","banner_pos","site_category", "device_type","device_conn_type","C14","C15","C16","C17","C18","C19","C20","C21", "hour"]
 

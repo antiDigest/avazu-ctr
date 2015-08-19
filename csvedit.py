@@ -1,25 +1,12 @@
-import csv
+import pandas as pd
 
-#List to store the values retrieved from the database.
-lst = []
-l = []
+filereader = pd.read_csv('train.csv',iterator='True',chunksize=100)
 
-#Read from the main train.csv
-with open('train/train.csv','rb') as f:
-    rdr = csv.reader(f)
-    i = 0
-    for row in rdr:
-            #l = row[0], row[1], row[2], row[4], row[5], row[6], row[7]
-        if i==0:
-            lst.append(row)
-        if i <= 200000:
-            if i > 100000:
-                lst.append(row)
-        else:
-            break
-        i += 1
+# for row in filereader:
+#     row[:60].to_csv('subtrain.csv',header=True,index=0)
+#     row[60:].to_csv('subtest.csv',header=True,index=0)
+#     break
 
-#write to a new file subtrain.csv
-with open('test/mtest.csv','w') as f:
-    writer = csv.writer(f)
-    writer.writerows(lst)
+# for row in filereader:
+#     row[:60].to_csv('subtrain.csv', mode='a',header=False,index=0)
+#     row[60:].to_csv('subtest.csv', mode='a',header=False,index=0)
