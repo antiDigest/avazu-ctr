@@ -1,3 +1,4 @@
+
 # Avazu CTR prediction
 # SGD Logistic regression + hashing trick.
 
@@ -29,7 +30,7 @@ fh = FeatureHasher(n_features = 2**20, input_type="string")
 
 # Train classifier
 clf = LogisticRegression()
-train = pd.read_csv("train/subtrain.csv", chunksize = 100000, iterator = True)
+train = pd.read_csv("testtrain.csv", chunksize = 500000, iterator = True)
 all_classes = np.array([0, 1])
 for chunk in train:
     y_train = chunk["click"]
@@ -41,20 +42,21 @@ for chunk in train:
     
 # Create a submission file
 usecols = cols + ["id"]
-X_test = pd.read_csv("test/mtest.csv", usecols=usecols)
+X_test = pd.read_csv("testtest.csv", usecols=usecols)
 X_test = X_test.join(pd.DataFrame([dayhour(x) for x in X_test.hour], columns=["wd", "hr"]))
 X_test.drop(["hour"], axis=1, inplace = True)
 
 X_enc_test = fh.transform(np.asarray(X_test.astype(str)))
 
-y_act = pd.read_csv("test/mtest.csv", usecols=['click'])
-y_pred = clf.predict(X_enc_test)
+y_act = pd.read_csv("testtest.csv", usecols=['click'])
+y_pred = clf.predict_proba(X_enc_test)[:, 1]
 
-with open('logloss.txt','a') as f:
+with open('logloss_logistic.txt','a') as f:
     f.write('\n'+str(log_loss(y_act, y_pred)))
 
-with open("submission/submission_logr.csv", "w") as f:
+with open("submission_logistic.csv", "w") as f:
     f.write("id,click\n")
     for idx, xid in enumerate(X_test.id):
         f.write(str(xid) + "," + "{0:.10f}".format(y_pred[idx]) + "\n")
+>>>>>>> ca13d941ffac221070f03d166dd55374612faa81
 f.close()

@@ -38,18 +38,21 @@ for prediciton have their own model
 
 ###Spectroscopic Determination of Leaf Biochemistry Using Band-Depth Analysis of Absorption Features and Stepwise Multiple Linear Regression
 
-Get this paper here[http://www.sciencedirect.com/science/article/pii/S0034425798000844]
+Get this paper (here)[http://www.sciencedirect.com/science/article/pii/S0034425798000844]
 
 I'll try to get this one in college.
 
 ###Ebook : Applied Linear regression
 
-[here]https://books.google.co.in/books?hl=en&lr=&id=xd0tNdFOOjcC&oi=fnd&pg=PR7&dq=areas+of+use+of+Linear+Regression&ots=dT3sDtKCMJ&sig=jlc1PqqX7LODumaRjuK5-D2GRas#v=onepage&q&f=false
+(here)[https://books.google.co.in/books?hl=en&lr=&id=xd0tNdFOOjcC&oi=fnd&pg=PR7&dq=areas+of+use+of+Linear+Regression&ots=dT3sDtKCMJ&sig=jlc1PqqX7LODumaRjuK5-D2GRas#v=onepage&q&f=false]
 
 This book cites some areas where linear regression is widely applied
 
 ##On the statistical description of inhomogeneities in the quiet solar atmosphere.
 
-[here]http://articles.adsabs.harvard.edu/cgi-bin/nph-iarticle_query?bibcode=1975ApJ...200..747S&db_key=AST&page_ind=0&data_type=GIF&type=SCREEN_VIEW&classic=YES
+(here)[http://articles.adsabs.harvard.edu/cgi-bin/nph-iarticle_query?bibcode=1975ApJ...200..747S&db_key=AST&page_ind=0&data_type=GIF&type=SCREEN_VIEW&classic=YES]
 
 this one uses Linear Regression in some kind of geothermal prediction. And it can go into related works.
+
+
+The reasoning for better logistic regression: (This scikit Tutorial)[http://scikit-learn.org/stable/auto_examples/calibration/plot_compare_calibration.html#example-calibration-plot-compare-calibration-py]

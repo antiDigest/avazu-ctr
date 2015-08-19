@@ -1,3 +1,4 @@
+
 # Avazu CTR prediction
 # SGD Logistic regression + hashing trick.
 
@@ -6,7 +7,7 @@ import numpy as np
 from datetime import datetime, date, time
 from sklearn.linear_model import SGDClassifier
 from sklearn.feature_extraction import FeatureHasher
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import log_loss
 import scipy as sp
 
@@ -29,14 +30,13 @@ fh = FeatureHasher(n_features = 2**20, input_type="string")
 
 # Train classifier
 clf = SGDClassifier(loss="log", n_iter=1)
-train = pd.read_csv("testtrain.csv", chunksize = 25000, iterator = True)
+train = pd.read_csv("testtrain.csv", chunksize = 50000, iterator = True)
 all_classes = np.array([0, 1])
 for chunk in train:
     y_train = chunk["click"]
     chunk = chunk[cols]
     chunk = chunk.join(pd.DataFrame([dayhour(x) for x in chunk.hour], columns=["wd", "hr"]))
     chunk.drop(["hour"], axis=1, inplace = True)
-    # chunk = chunk.OneHotEncoder(categorical_features=cols)
     Xcat = fh.transform(np.asarray(chunk.astype(str)))
     clf.partial_fit(Xcat, y_train, classes=all_classes)
     
@@ -58,4 +58,5 @@ with open("submission_sgd.csv", "w") as f:
     f.write("id,click\n")
     for idx, xid in enumerate(X_test.id):
         f.write(str(xid) + "," + "{0:.10f}".format(y_pred[idx]) + "\n")
+>>>>>>> ca13d941ffac221070f03d166dd55374612faa81
 f.close()
