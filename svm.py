@@ -5,7 +5,7 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime, date, time
-from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 from sklearn.feature_extraction import FeatureHasher
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import log_loss
@@ -26,11 +26,17 @@ def dayhour(timestr):
     d = datetime.strptime(str(x), "%y%m%d%H")
     return [float(d.weekday()), float(d.hour)]
 
-fh = FeatureHasher(n_features = 2**20, input_type="string")
+# def replaceneg(X):
+#     for i in X:
+#         if i
+#     return X
+
+fh = FeatureHasher(n_features = 2**20, input_type="string", non_negative=True)
+# ohe = OneHotEncoder(categorical_features=columns)
 
 # Train classifier
-clf = LogisticRegression()
-train = pd.read_csv("testtrain.csv", chunksize = 500000, iterator = True)
+clf = SVC()
+train = pd.read_csv("testtrain.csv", chunksize = 50000, iterator = True)
 all_classes = np.array([0, 1])
 for chunk in train:
     y_train = chunk["click"]
@@ -49,12 +55,12 @@ X_test.drop(["hour"], axis=1, inplace = True)
 X_enc_test = fh.transform(np.asarray(X_test.astype(str)))
 
 y_act = pd.read_csv("testtest.csv", usecols=['click'])
-y_pred = clf.predict_proba(X_enc_test)[:, 1]
+y_pred = clf.predict(X_enc_test)[:, 1]
 
-with open('logloss_logistic.txt','a') as f:
-    f.write('\n'+str(log_loss(y_act, y_pred)))
+with open('logloss.txt','a') as f:
+    f.write('\n'+str(log_loss(y_act, y_pred))+'\tSVM')
 
-with open("submission_logistic.csv", "w") as f:
+with open("submission_sgd.csv", "w") as f:
     f.write("id,click\n")
     for idx, xid in enumerate(X_test.id):
         f.write(str(xid) + "," + "{0:.10f}".format(y_pred[idx]) + "\n")

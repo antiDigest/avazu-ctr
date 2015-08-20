@@ -48,7 +48,7 @@ X_test.drop(["hour"], axis=1, inplace = True)
 X_enc_test = fh.transform(np.asarray(X_test.astype(str)))
 
 y_act = pd.read_csv("testtest.csv", usecols=['click'])
-y_pred = clf.predict_proba(X_enc_test)[:, 1]
+y_pred = clf.predict_proba(X_enc_test)
 
 with open('logloss_rf.txt','a') as f:
     f.write('\n'+str(log_loss(y_act, y_pred)))
