@@ -9,19 +9,14 @@ y = []
 e = 2.7182818
 
 def sigmoid(z):
-    '''if not isinstance(z,float) and not isinstance(z,int):
-        g = numpy.zeros(len(z))    
-        #print g
-        k=0
-        for i in z:
-            g[k] = 1/(1+math.pow(e,(-i)))
-            k += 1
-        #print g
-    else:'''
-    g = 1/(1+(e**(-z)))
+    g=[0,]
+    for i in z:
+        g += 1/(1+(e**(-i)))
+        print g
     return g
-        #print g
-
+    # except Error:
+    #     print 'Only integer values allowed in z.'
+        
 def costFunction(theta):
     J = 0;
     grad = numpy.zeros(len(theta))
@@ -40,26 +35,10 @@ def costFunction(theta):
             J = J - (1/m)*sumx + (suml)
             grad[k] = (1/m) * (sumz)
             k+=1
-
     print J
     print grad
 
 def main():
-    #Read from the main train.csv
-
-    with open('site_train.csv','rb') as f:
-        rdr = csv.reader(f)
-        i=0
-        for row in rdr:
-            if i!=0:
-                y.append(row[1])
-                data = row[2], row[3], row[4], row[5], row[6]
-                Xs.append(data)
-                #print data
-            i+=1
-        #print Xs
-    
-    #sigmoid(0)
     initial_theta = numpy.zeros((7,))
 
     costFunction(initial_theta)

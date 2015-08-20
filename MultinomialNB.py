@@ -1,4 +1,3 @@
-
 # Avazu CTR prediction
 # SGD Logistic regression + hashing trick.
 
@@ -26,13 +25,7 @@ def dayhour(timestr):
     d = datetime.strptime(str(x), "%y%m%d%H")
     return [float(d.weekday()), float(d.hour)]
 
-# def replaceneg(X):
-#     for i in X:
-#         if i
-#     return X
-
 fh = FeatureHasher(n_features = 2**20, input_type="string", non_negative=True)
-# ohe = OneHotEncoder(categorical_features=columns)
 
 # Train classifier
 clf = MultinomialNB()

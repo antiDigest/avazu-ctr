@@ -29,7 +29,7 @@ fh = FeatureHasher(n_features = 2**20, input_type="string")
 
 # Train classifier
 clf = RandomForestClassifier()
-train = pd.read_csv("testtrain.csv", chunksize = 500000, iterator = True)
+train = pd.read_csv("subtrain.csv", chunksize = 500000, iterator = True)
 all_classes = np.array([0, 1])
 for chunk in train:
     y_train = chunk["click"]
@@ -37,17 +37,17 @@ for chunk in train:
     chunk = chunk.join(pd.DataFrame([dayhour(x) for x in chunk.hour], columns=["wd", "hr"]))
     chunk.drop(["hour"], axis=1, inplace = True)
     Xcat = fh.transform(np.asarray(chunk.astype(str)))
-    clf.fit(Xcat, y_train)
+    clf.fit(Xcat.toarray(), y_train)
 
 # Create a submission file
 usecols = cols + ["id"]
-X_test = pd.read_csv("testtest.csv", usecols=usecols)
+X_test = pd.read_csv("subtest.csv", usecols=usecols)
 X_test = X_test.join(pd.DataFrame([dayhour(x) for x in X_test.hour], columns=["wd", "hr"]))
 X_test.drop(["hour"], axis=1, inplace = True)
 
 X_enc_test = fh.transform(np.asarray(X_test.astype(str)))
 
-y_act = pd.read_csv("testtest.csv", usecols=['click'])
+y_act = pd.read_csv("subtest.csv", usecols=['click'])
 y_pred = clf.predict_proba(X_enc_test)
 
 with open('logloss_rf.txt','a') as f:

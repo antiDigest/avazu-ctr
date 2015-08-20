@@ -1,10 +1,11 @@
+
 # Avazu CTR prediction
 # SGD Logistic regression + hashing trick.
 
 import pandas as pd
 import numpy as np
 from datetime import datetime, date, time
-from sklearn.linear_model import Perceptron
+from sklearn.naive_bayes import GaussianNB
 from sklearn.feature_extraction import FeatureHasher
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import log_loss
@@ -34,7 +35,7 @@ fh = FeatureHasher(n_features = 2**20, input_type="string", non_negative=True)
 # ohe = OneHotEncoder(categorical_features=columns)
 
 # Train classifier
-clf = Perceptron()
+clf = GaussianNB()
 train = pd.read_csv("testtrain.csv", chunksize = 50000, iterator = True)
 all_classes = np.array([0, 1])
 for chunk in train:
@@ -43,7 +44,7 @@ for chunk in train:
     chunk = chunk.join(pd.DataFrame([dayhour(x) for x in chunk.hour], columns=["wd", "hr"]))
     chunk.drop(["hour"], axis=1, inplace = True)
     Xcat = fh.transform(np.asarray(chunk.astype(str)))
-    clf.partial_fit(Xcat, y_train, classes=all_classes)
+    clf.fit(Xcat.toarray(), y_train)
     
 # Create a submission file
 usecols = cols + ["id"]
@@ -54,10 +55,10 @@ X_test.drop(["hour"], axis=1, inplace = True)
 X_enc_test = fh.transform(np.asarray(X_test.astype(str)))
 
 y_act = pd.read_csv("testtest.csv", usecols=['click'])
-y_pred = clf.predict(X_enc_test)
+y_pred = clf.predict_proba(X_enc_test)[:, 1]
 
 with open('logloss.txt','a') as f:
-    f.write('\n'+str(log_loss(y_act, y_pred))+'\tPerceptron')
+    f.write('\n'+str(log_loss(y_act, y_pred))+'\tMultinomialNB')
 
 with open("submission_sgd.csv", "w") as f:
     f.write("id,click\n")
