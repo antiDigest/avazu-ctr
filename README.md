@@ -56,3 +56,7 @@ this one uses Linear Regression in some kind of geothermal prediction. And it ca
 
 
 The reasoning for better logistic regression: (This scikit Tutorial)[http://scikit-learn.org/stable/auto_examples/calibration/plot_compare_calibration.html#example-calibration-plot-compare-calibration-py]
+
+
+# Final Reserach Paper:
+http://ieeexplore.ieee.org/abstract/document/7489611/?reload=true
