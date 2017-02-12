@@ -1,7 +1,7 @@
 # avazu-ctr
 Comparison of Linear Learning methods in Click-Through Rate Prediction !
 
-# Final Reserach Paper:
+# Final Research Paper:
 http://ieeexplore.ieee.org/abstract/document/7489611/?reload=true
 
 #Abstract:
