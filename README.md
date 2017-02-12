@@ -1,62 +1,11 @@
 # avazu-ctr
-Click Through Rate !
-
-##Updates:
-	
-	checkout log_loss.txt
-
-	Linear least squares with l2 regularization.(ridge)
-
-	Linear regression with combined L1 and L2 priors as regularizer. (ElasticNet)
-
-	It is a Linear Model trained with an L1 prior as regularizer. (LassoLARS)
-
-
-###Microsoft Paper
-
-**No comparison kind of thing found among different classifiers, so, left it out
-
-###Predicting Ads’ Click-Through Rate with Decision Rules
-
-```bash
-	http://www.cs.put.poznan.pl/dweiss/research/adrules/papers/troa.pdf
-```
-
-two problems cited: esmtimating CTR value for existing ads, predicting CTR values for new ads
-
-in  order  to  estimate  CTR,  they  use maximum  likelihood  estimation  (MLE)  to  learn  all  model parameters directly from real historical data.
-
-for prediciton have their own model
-
-**doesn't again seem to be telling where each of our classifiers is good, so left out
-
-**even data types we are using does not match with them
-
-###Predicting Click-Through Rate Using Keyword Clusters
-
-**I don't think we want these types of papers, there are plenty, but none satisfy our requirements of defining a domain for Linear Regression.
-
-###Spectroscopic Determination of Leaf Biochemistry Using Band-Depth Analysis of Absorption Features and Stepwise Multiple Linear Regression
-
-Get this paper (here)[http://www.sciencedirect.com/science/article/pii/S0034425798000844]
-
-I'll try to get this one in college.
-
-###Ebook : Applied Linear regression
-
-(here)[https://books.google.co.in/books?hl=en&lr=&id=xd0tNdFOOjcC&oi=fnd&pg=PR7&dq=areas+of+use+of+Linear+Regression&ots=dT3sDtKCMJ&sig=jlc1PqqX7LODumaRjuK5-D2GRas#v=onepage&q&f=false]
-
-This book cites some areas where linear regression is widely applied
-
-##On the statistical description of inhomogeneities in the quiet solar atmosphere.
-
-(here)[http://articles.adsabs.harvard.edu/cgi-bin/nph-iarticle_query?bibcode=1975ApJ...200..747S&db_key=AST&page_ind=0&data_type=GIF&type=SCREEN_VIEW&classic=YES]
-
-this one uses Linear Regression in some kind of geothermal prediction. And it can go into related works.
-
-
-The reasoning for better logistic regression: (This scikit Tutorial)[http://scikit-learn.org/stable/auto_examples/calibration/plot_compare_calibration.html#example-calibration-plot-compare-calibration-py]
-
+Comparison of Linear Learning methods in Click-Through Rate Prediction !
 
 # Final Reserach Paper:
 http://ieeexplore.ieee.org/abstract/document/7489611/?reload=true
+
+#Abstract:
+A major challenge in the current era of search engine advertising is choosing which advertisements to show in response to a user query. This significantly impacts the overall user experience, and more importantly the advertising revenue stream for the search engine provider. Predicting click-through rates (CTR) for an advertisement is a massive-scale learning problem that is central to the multi-billion dollar online advertising industry. This study examines the performance of some well-known statistical learning methods (linear and logistic) with respect to their efficiency in predicting the click through rate of an impression, where an impression can simply be defined as an instance of a particular advertisement, with each instance defined in terms of the learning parameters in our data set. Our data set consisted of three types of independent attributes to act as a regressor in predicting our dependent variable - the app through which it was clicked, the site type and the domain to which it led - with the help of other anonymised variables. Fine tuning of the algorithm parameters was done to get promising results. Besides that a dimensionality check on the data set was conducted to observe the possibilities of dimensionality reduction. Logistic loss (log-loss) was used as the validation index in all cases. Our observations led us to the conclusion that with minimal data preprocessing, linear models give competitive on-par results suited for most practical applications, where the learning method chosen should not be computationally expensive. We go on to further verify this claim by comparing the performance of linear models on various subsets of the data set attributes, showing that the performance of the linear techniques was consistent all across.
+
+#Published in:
+Soft Computing Techniques and Implementations (ICSCTI), 2015 International Conference
